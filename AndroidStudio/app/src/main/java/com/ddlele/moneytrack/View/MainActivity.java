@@ -1,13 +1,17 @@
-package com.ddlele.moneytrack;
+package com.ddlele.moneytrack.View;
 
 import android.os.Bundle;
 
+import com.ddlele.moneytrack.R;
+import com.ddlele.moneytrack.ViewModel.MainActivityViewModel;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
 
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -17,8 +21,14 @@ import com.ddlele.moneytrack.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    private MainActivityViewModel viewModel;
+    private TextView textView;
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
@@ -32,10 +42,6 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(binding.toolbar);
 
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,6 +49,10 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        textView = findViewById(R.id.mainText);
+        viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+        displayExpenses();
     }
 
     @Override
@@ -67,10 +77,11 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
-                || super.onSupportNavigateUp();
+    private void displayExpenses(){
+        textView.setText("");
+        List<String> expenses = viewModel.getAllExpenses();
+        for(String expense : expenses){
+            textView.append(expense+"\n");
+        }
     }
 }
