@@ -1,58 +1,78 @@
 package com.ddlele.moneytrack.View;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import com.ddlele.moneytrack.R;
-import com.ddlele.moneytrack.ViewModel.MainActivityViewModel;
-import com.google.android.material.snackbar.Snackbar;
+import com.ddlele.moneytrack.ViewModel.UserViewModel;
+import com.ddlele.moneytrack.Wrappers.ApiResponses.JWT;
+import com.ddlele.moneytrack.Wrappers.User;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.View;
-
-import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
-import com.ddlele.moneytrack.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private MainActivityViewModel viewModel;
     private TextView textView;
+    EditText email;
+    EditText password;
+    Button loginButton;
 
-    private AppBarConfiguration appBarConfiguration;
-    private ActivityMainBinding binding;
+
+
+    private UserViewModel userViewModel;
+
+    public static Context contextOfApplication;
+
+    public static Context getContextOfApplication(){
+        return contextOfApplication;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        contextOfApplication = getApplicationContext();
+
         super.onCreate(savedInstanceState);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        setContentView(R.layout.activity_main);
 
-        setSupportActionBar(binding.toolbar);
+        textView = findViewById(R.id.mainText);
+        email = findViewById(R.id.emailField);
+        password = findViewById(R.id.passwordField);
+        loginButton = findViewById(R.id.loginButton);
 
-        binding.fab.setOnClickListener(new View.OnClickListener() {
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+//        displayExpenses();
+        userViewModel.getToken().observe(this, new Observer<JWT>() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onChanged(JWT jwt) {
+                textView.setText(jwt.getToken());
             }
         });
 
-        textView = findViewById(R.id.mainText);
-        viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
-        displayExpenses();
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(email.getText().toString().equals("")||email.getText().toString().equals("")) return;
+
+                User toLogin = new User(email.getText().toString(),password.getText().toString());
+                textView.setText(toLogin.toString());
+
+                userViewModel.login(toLogin);
+            }
+        });
     }
 
     @Override
@@ -77,11 +97,4 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void displayExpenses(){
-        textView.setText("");
-        List<String> expenses = viewModel.getAllExpenses();
-        for(String expense : expenses){
-            textView.append(expense+"\n");
-        }
-    }
 }
