@@ -1,7 +1,6 @@
 package com.ddlele.moneytrack.View;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
 import com.ddlele.moneytrack.R;
@@ -13,24 +12,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.ui.AppBarConfiguration;
 
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import java.util.List;
+public class RegisterActivity extends AppCompatActivity {
 
-public class MainActivity extends AppCompatActivity {
-
-    Button loginButton;
+    private TextView textView;
+    EditText name;
+    EditText email;
+    EditText password;
     Button registerButton;
-    ProgressBar progressBar;
 
 
 
@@ -48,49 +44,33 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_register);
 
-        loginButton = findViewById(R.id.loginButton);
+        textView = findViewById(R.id.mainText);
+        name = findViewById(R.id.nameField);
+        email = findViewById(R.id.emailField);
+        password = findViewById(R.id.passwordField);
         registerButton = findViewById(R.id.registerButton);
-        progressBar = findViewById(R.id.progressBar);
-
-        progressBar.setVisibility(View.INVISIBLE);
 
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 //        displayExpenses();
         userViewModel.getToken().observe(this, new Observer<JWT>() {
             @Override
             public void onChanged(JWT jwt) {
-                if(jwt.getToken().equals("loading")){
-                    progressBar.setVisibility(View.VISIBLE);
-                }else if
-                (jwt.getToken().equals("empty")){
-                    progressBar.setVisibility(View.INVISIBLE);
-                }
-                else{
-                    progressBar.setVisibility(View.INVISIBLE);
-                    loginButton.setVisibility(View.INVISIBLE);
-                    registerButton.setVisibility(View.INVISIBLE);
-                }
-
-//                progressBar.setVisibility(View.INVISIBLE);
-
-
+                textView.setText(jwt.getToken());
             }
         });
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
-                startActivity(intent);
+                if(email.getText().toString().equals("")||name.getText().toString().equals("")||password.getText().toString().equals("")) return;
+
+
+                User toReg = new User(email.getText().toString(),password.getText().toString(),name.getText().toString());
+                textView.setText(toReg.toString());
+
+                userViewModel.register(toReg);
             }
         });
     }

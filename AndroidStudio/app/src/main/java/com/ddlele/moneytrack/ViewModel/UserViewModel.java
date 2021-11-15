@@ -25,4 +25,8 @@ public class UserViewModel extends ViewModel {
     public void logout(){
         repository.logout();
     }
+
+    public void register(User user){
+        repository.register(user);
+    }
 }

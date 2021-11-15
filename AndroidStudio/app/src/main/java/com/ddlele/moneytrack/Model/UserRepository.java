@@ -1,5 +1,7 @@
 package com.ddlele.moneytrack.Model;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -27,6 +29,8 @@ public class UserRepository {
         userAPI = ServiceGenerator.getUserAPI();
         refreshToken = new MutableLiveData<>();
         accessToken = new MutableLiveData<>();
+
+        accessToken.setValue(new JWT("loading"));
 //        refreshToken.setValue(new JWT(LocalStorage.getInstance().get("refreshToken")));
 //        refresh();
         email = LocalStorage.getInstance().get("email");
@@ -72,6 +76,24 @@ public class UserRepository {
         accessToken.setValue(null);
         LocalStorage.getInstance().set("email","clear");
         LocalStorage.getInstance().set("pass","clear");
+    }
+
+    public void register(User user){
+        Call<User> call = userAPI.register(user);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if(response.code()==200){
+                    login(user);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Log.i("api call", "Error");
+            }
+        });
+
     }
 
     private void refresh(){

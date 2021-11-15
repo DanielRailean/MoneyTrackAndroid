@@ -10,5 +10,6 @@ import retrofit2.http.POST;
 public interface UserAPI {
     @POST("user/login")
     Call<JWT> login(@Body User user);
+    @POST("user/register")
     Call<User> register(@Body User user);
 }
