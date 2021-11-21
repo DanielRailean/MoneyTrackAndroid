@@ -13,6 +13,7 @@
     <string name="login">Login</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_auth">MainActivityAuth</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
@@ -25,4 +26,6 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="submit">Submit</string>
+    <string name="page_title">MoneyTrack</string>
+    <string name="sign_up">Sign Up</string>
 </resources>

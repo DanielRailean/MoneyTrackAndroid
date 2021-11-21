@@ -24,11 +24,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 
-public class MainActivity extends AppCompatActivity {
-
-    Button loginButton;
-    Button registerButton;
-    ProgressBar progressBar;
+public class MainActivityAuth extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
@@ -53,24 +49,19 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
-
-        loginButton = findViewById(R.id.loginButton);
-        registerButton = findViewById(R.id.registerButton);
-        progressBar = findViewById(R.id.progressBar);
+        setContentView(R.layout.activity_main_auth);
 
         toolbar = findViewById(R.id.topAppBar);
-        drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.navigationView);
+        drawerLayout = findViewById(R.id.drawer_layout_auth);
+        navigationView = findViewById(R.id.navigationViewAuth);
+
 
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
         setupDrawerContent(navigationView);
 
-        progressBar.setVisibility(View.INVISIBLE);
 
 
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
@@ -78,43 +69,15 @@ public class MainActivity extends AppCompatActivity {
         userViewModel.getToken().observe(this, new Observer<JWT>() {
             @Override
             public void onChanged(JWT jwt) {
-                if(jwt.getToken().equals("loading")){
-                    progressBar.setVisibility(View.VISIBLE);
-                    loginButton.setVisibility(View.INVISIBLE);
-                    registerButton.setVisibility(View.INVISIBLE);
-                }else if
-                (jwt.getToken().equals("empty")){
-                    loginButton.setVisibility(View.VISIBLE);
-                    registerButton.setVisibility(View.VISIBLE);
-                    progressBar.setVisibility(View.INVISIBLE);
-                }
-                else{
-                    Intent intent = new Intent(MainActivity.this, MainActivityAuth.class);
+                if (jwt.getToken().equals("empty") || jwt.getToken().equals("loading")) {
+                    Intent intent = new Intent(MainActivityAuth.this, MainActivity.class);
                     startActivity(intent);
                     finish();
-                    progressBar.setVisibility(View.INVISIBLE);
-
                 }
-
-
-
             }
 
         });
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
-                startActivity(intent);
-            }
-        });
+
 
     }
 
@@ -142,29 +105,28 @@ public class MainActivity extends AppCompatActivity {
                     selectDrawerItem(menuItem);
                     return true;
                 });
-}
+    }
     public void selectDrawerItem(MenuItem menuItem) {
 
         Intent intent;
         switch(menuItem.getItemId()) {
-            case R.id.nav_login:
-                intent= new Intent(MainActivity.this, LoginActivity.class);
+            case R.id.nav_expenses:
+                intent= new Intent(MainActivityAuth.this, LoginActivity.class);
 
                 break;
-            case R.id.nav_register:
-                intent= new Intent(MainActivity.this, RegisterActivity.class);
+            case R.id.nav_incomes:
+                intent= new Intent(MainActivityAuth.this, RegisterActivity.class);
                 break;
 
             default:
-                intent= new Intent(MainActivity.this, LoginActivity.class);
+                intent= new Intent(MainActivityAuth.this, LoginActivity.class);
         }
 
         startActivity(intent);
-        finish();
+
         menuItem.setChecked(true);
         setTitle(menuItem.getTitle());
         drawerLayout.closeDrawers();
     }
-
 
 }

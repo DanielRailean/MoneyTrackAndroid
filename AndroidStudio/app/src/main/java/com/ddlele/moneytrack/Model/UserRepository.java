@@ -61,6 +61,8 @@ public class UserRepository {
             public void onResponse(Call<JWT> call, Response<JWT> response) {
                 if(response.code() == 200){
                     accessToken.setValue(response.body());
+                }else{
+                    accessToken.setValue(new JWT("empty"));
                 }
             }
 
@@ -73,7 +75,7 @@ public class UserRepository {
     }
 
     public void logout(){
-        accessToken.setValue(null);
+        accessToken.setValue(new JWT("empty"));
         LocalStorage.getInstance().set("email","clear");
         LocalStorage.getInstance().set("pass","clear");
     }
