@@ -60,6 +60,7 @@ public class UserRepository {
             @Override
             public void onResponse(Call<JWT> call, Response<JWT> response) {
                 if(response.code() == 200){
+                    LocalStorage.getInstance().set("access_token", response.body().getToken());
                     accessToken.setValue(response.body());
                 }else{
                     accessToken.setValue(new JWT("empty"));
@@ -76,6 +77,7 @@ public class UserRepository {
 
     public void logout(){
         accessToken.setValue(new JWT("empty"));
+        LocalStorage.getInstance().set("access_token", "empty");
         LocalStorage.getInstance().set("email","clear");
         LocalStorage.getInstance().set("pass","clear");
     }

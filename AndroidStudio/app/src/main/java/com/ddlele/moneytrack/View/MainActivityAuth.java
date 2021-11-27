@@ -111,15 +111,15 @@ public class MainActivityAuth extends AppCompatActivity {
         Intent intent;
         switch(menuItem.getItemId()) {
             case R.id.nav_expenses:
-                intent= new Intent(MainActivityAuth.this, LoginActivity.class);
+                intent= new Intent(MainActivityAuth.this, ExpenseActivity.class);
 
                 break;
             case R.id.nav_incomes:
-                intent= new Intent(MainActivityAuth.this, RegisterActivity.class);
+                intent= new Intent(MainActivityAuth.this, ExpenseActivity.class);
                 break;
 
             default:
-                intent= new Intent(MainActivityAuth.this, LoginActivity.class);
+                intent= new Intent(MainActivityAuth.this, ExpenseActivity.class);
         }
 
         startActivity(intent);

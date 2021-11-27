@@ -24,6 +24,10 @@
             android:exported="true"
             android:label="@string/title_activity_auth" />
         <activity
+            android:name=".View.ExpenseActivity"
+            android:exported="true"
+            android:label="@string/title_expense_activity" />
+        <activity
             android:name=".View.MainActivity"
             android:exported="true"
             android:label="@string/app_name"

@@ -12,11 +12,11 @@ public class Account{
     public boolean isShared;
     public int sharedWithId;
     public boolean sharingConfirmedOther;
-    public Date dateCreated;
-    public Date lastConfirmed;
+    public String dateCreated;
+    public String lastConfirmed;
     public int userPriority;
 
-    public Account(int id, String name, double balance, Currency currency, int currencyId, int userId, boolean isShared, int sharedWithId, boolean sharingConfirmedOther, Date dateCreated, Date lastConfirmed, int userPriority) {
+    public Account(int id, String name, double balance, Currency currency, int currencyId, int userId, boolean isShared, int sharedWithId, boolean sharingConfirmedOther, String dateCreated, String lastConfirmed, int userPriority) {
         this.id = id;
         this.name = name;
         this.balance = balance;
@@ -111,19 +111,19 @@ public class Account{
         this.sharingConfirmedOther = sharingConfirmedOther;
     }
 
-    public Date getDateCreated() {
+    public String getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Date dateCreated) {
+    public void setDateCreated(String dateCreated) {
         this.dateCreated = dateCreated;
     }
 
-    public Date getLastConfirmed() {
+    public String getLastConfirmed() {
         return lastConfirmed;
     }
 
-    public void setLastConfirmed(Date lastConfirmed) {
+    public void setLastConfirmed(String lastConfirmed) {
         this.lastConfirmed = lastConfirmed;
     }
 

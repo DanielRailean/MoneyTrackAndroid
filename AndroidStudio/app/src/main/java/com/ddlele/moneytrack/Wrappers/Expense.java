@@ -13,7 +13,7 @@ public class Expense {
     public int authorId;
     public int categoryId;
     public Category category;
-    public Date dateCreated;
+    public String dateCreated;
     public int userPriority;
 
     public Expense(String name, int accountId, int amount, int currencyId, int categoryId) {
@@ -24,7 +24,7 @@ public class Expense {
         this.categoryId = categoryId;
     }
 
-    public Expense(int id, String name, int accountId, Account account, int amount, int currencyId, Currency currency, int authorId, int categoryId, Category category, Date dateCreated, int userPriority) {
+    public Expense(int id, String name, int accountId, Account account, int amount, int currencyId, Currency currency, int authorId, int categoryId, Category category, String dateCreated, int userPriority) {
         this.id = id;
         this.name = name;
         this.accountId = accountId;
@@ -37,6 +37,12 @@ public class Expense {
         this.category = category;
         this.dateCreated = dateCreated;
         this.userPriority = userPriority;
+    }
+
+    public Expense(String bika, int i, String dkk) {
+        this.name = bika;
+        this.amount = i;
+        this.currency = new Currency(dkk,1);
     }
 
     public int getId() {
@@ -119,11 +125,11 @@ public class Expense {
         this.category = category;
     }
 
-    public Date getDateCreated() {
+    public String getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Date dateCreated) {
+    public void setDateCreated(String dateCreated) {
         this.dateCreated = dateCreated;
     }
 
