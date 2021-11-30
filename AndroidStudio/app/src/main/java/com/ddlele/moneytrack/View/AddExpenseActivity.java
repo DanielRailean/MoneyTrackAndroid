@@ -5,9 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.ddlele.moneytrack.R;
-import com.ddlele.moneytrack.ViewModel.UserViewModel;
+import com.ddlele.moneytrack.ViewModel.ExpenseViewModel;
+import com.ddlele.moneytrack.Wrappers.Account;
 import com.ddlele.moneytrack.Wrappers.ApiResponses.JWT;
-import com.ddlele.moneytrack.Wrappers.User;
+import com.ddlele.moneytrack.Wrappers.Category;
+import com.ddlele.moneytrack.Wrappers.Currency;
+import com.ddlele.moneytrack.Wrappers.Expense;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,17 +24,23 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
-public class RegisterActivity extends AppCompatActivity {
+import java.util.ArrayList;
 
-    private TextView textView;
+public class AddExpenseActivity extends AppCompatActivity {
+    
     EditText name;
-    EditText email;
-    EditText password;
-    Button registerButton;
+    EditText amount;
+    Spinner currency;
+    Spinner category;
+    Spinner accounts;
+    
+    Button addButton;
 
 
     private DrawerLayout drawerLayout;
@@ -43,7 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
 
-    private UserViewModel userViewModel;
+    private ExpenseViewModel expenseViewModel;
 
     public static Context contextOfApplication;
 
@@ -57,14 +66,26 @@ public class RegisterActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_register);
-
-        textView = findViewById(R.id.mainText);
+        setContentView(R.layout.add_expense);
+        
         name = findViewById(R.id.e_nameField);
-        email = findViewById(R.id.e_amount);
-        password = findViewById(R.id.e_currency);
-        registerButton = findViewById(R.id.registerButton);
+        amount = findViewById(R.id.e_amount);
+        currency = findViewById(R.id.e_currency);
+        category = findViewById(R.id.e_category);
+        accounts = findViewById(R.id.e_account);
+        addButton = findViewById(R.id.addButton);
 
+        ArrayList<Currency> currencyArray = new ArrayList<Currency>();
+        ArrayList<Account> accountArray = new ArrayList<Account>();
+        ArrayList<Category> categoryArray = new ArrayList<Category>();
+
+        ArrayAdapter<Currency> spinnerCurrencyAdapter = new ArrayAdapter<Currency>(this, android.R.layout.simple_spinner_dropdown_item, currencyArray);
+        ArrayAdapter<Account> spinnerAccountAdapter = new ArrayAdapter<Account>(this, android.R.layout.simple_spinner_dropdown_item, accountArray);
+        ArrayAdapter<Category> spinnerCategoryAdapter = new ArrayAdapter<Category>(this, android.R.layout.simple_spinner_dropdown_item, categoryArray);
+
+        currency.setAdapter(spinnerCurrencyAdapter);
+        category.setAdapter(spinnerAccountAdapter);
+        accounts.setAdapter(spinnerCategoryAdapter);
 
         toolbar = findViewById(R.id.topAppBar);
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -77,43 +98,17 @@ public class RegisterActivity extends AppCompatActivity {
 
         setupDrawerContent(navigationView);
 
-        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+        expenseViewModel = new ViewModelProvider(this).get(ExpenseViewModel.class);
 //        displayExpenses();
-        userViewModel.getToken().observe(this, new Observer<JWT>() {
-            @Override
-            public void onChanged(JWT jwt) {
-                if(jwt.getToken().equals("empty")||jwt.getToken().equals("loading")){
-                    password.setVisibility(View.VISIBLE);
-                    email.setVisibility(View.VISIBLE);
-                    name.setVisibility(View.VISIBLE);
-                    registerButton.setVisibility(View.VISIBLE);
-                    registerButton.setText("SUBMIT");
-                    logged = false;
-                }else{
-                    password.setVisibility(View.INVISIBLE);
-                    email.setVisibility(View.INVISIBLE);
-                    name.setVisibility(View.INVISIBLE);
-                    registerButton.setText("LOGOUT");
-                    logged = true;
-                }
-            }
-        });
 
-        registerButton.setOnClickListener(new View.OnClickListener() {
+        addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (logged) {
-                    textView.setText("Logging out");
-                    userViewModel.logout();
-                    return;
-                }
-
-                if(email.getText().toString().equals("")||name.getText().toString().equals("")||password.getText().toString().equals("")) return;
-
-                User toReg = new User(email.getText().toString(),password.getText().toString(),name.getText().toString());
-                textView.setText(toReg.toString());
-
-                userViewModel.register(toReg);
+                Expense item = new Expense(name.getText().toString(),((Account)accounts.getSelectedItem()).getId(),Integer.parseInt(amount.getText().toString()),currency.getId(),category.getId());
+                expenseViewModel.create(item);
+                Intent intent = new Intent(AddExpenseActivity.this, AllExpensesActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
@@ -138,7 +133,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void goLogin(View v){
-        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+        Intent intent = new Intent(AddExpenseActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();
     }
@@ -153,16 +148,16 @@ public class RegisterActivity extends AppCompatActivity {
 
         Intent intent;
         switch(menuItem.getItemId()) {
-            case R.id.nav_login:
-                intent= new Intent(RegisterActivity.this, LoginActivity.class);
+            case R.id.nav_expenses:
+                intent= new Intent(AddExpenseActivity.this, AllExpensesActivity.class);
 
                 break;
-            case R.id.nav_register:
-                intent= new Intent(RegisterActivity.this, RegisterActivity.class);
+            case R.id.nav_incomes:
+                intent= new Intent(AddExpenseActivity.this, AddExpenseActivity.class);
                 break;
 
             default:
-                intent= new Intent(RegisterActivity.this, MainActivity.class);
+                intent= new Intent(AddExpenseActivity.this, MainActivity.class);
         }
 
         startActivity(intent);

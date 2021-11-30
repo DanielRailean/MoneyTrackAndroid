@@ -29,4 +29,6 @@
     <string name="page_title">MoneyTrack</string>
     <string name="sign_up">Sign Up</string>
     <string name="title_expense_activity">ExpenseActivity</string>
+    <string name="textSizeExpense">30sp</string>
+    <string name="add">Add</string>
 </resources>

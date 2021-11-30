@@ -20,9 +20,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ProgressBar;
 
 public class MainActivityAuth extends AppCompatActivity {
 
@@ -111,15 +108,15 @@ public class MainActivityAuth extends AppCompatActivity {
         Intent intent;
         switch(menuItem.getItemId()) {
             case R.id.nav_expenses:
-                intent= new Intent(MainActivityAuth.this, ExpenseActivity.class);
+                intent= new Intent(MainActivityAuth.this, AllExpensesActivity.class);
 
                 break;
             case R.id.nav_incomes:
-                intent= new Intent(MainActivityAuth.this, ExpenseActivity.class);
+                intent= new Intent(MainActivityAuth.this, AllExpensesActivity.class);
                 break;
 
             default:
-                intent= new Intent(MainActivityAuth.this, ExpenseActivity.class);
+                intent= new Intent(MainActivityAuth.this, AllExpensesActivity.class);
         }
 
         startActivity(intent);

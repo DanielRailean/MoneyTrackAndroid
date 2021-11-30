@@ -3,30 +3,39 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#e4e4e4">
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:paddingLeft="5sp"
+    android:paddingRight="5sp">
 
     <TextView
         android:id="@+id/tv_name"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="5"
-        android:text="Expense Bilka"
+        android:layout_weight="6"
+        android:textSize="20sp"
+        android:text="Expense Name"
         android:textColor="@color/rblue"
+        android:padding="5sp"
         />
     <TextView
         android:id="@+id/tv_amount"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:textColor="@color/rblue"
-        android:text="20" />
+        android:textSize="20sp"
+        android:text="20"
+        android:padding="5sp"/>
     <TextView
         android:id="@+id/tv_currency"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:textColor="@color/rblue"
-        android:text="DKK" />
+        android:textSize="20sp"
+        android:text="DKK"
+        android:padding="5sp"/>
 
 
 </LinearLayout>

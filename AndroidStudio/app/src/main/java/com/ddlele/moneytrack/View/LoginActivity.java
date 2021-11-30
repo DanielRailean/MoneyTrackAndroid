@@ -17,7 +17,6 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.ui.AppBarConfiguration;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,8 +24,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -62,8 +59,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         textView = findViewById(R.id.mainText);
-        email = findViewById(R.id.emailField);
-        password = findViewById(R.id.passwordField);
+        email = findViewById(R.id.e_amount);
+        password = findViewById(R.id.e_currency);
         loginButton = findViewById(R.id.loginButton);
 
 
