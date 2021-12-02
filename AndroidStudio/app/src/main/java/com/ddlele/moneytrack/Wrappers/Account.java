@@ -38,6 +38,9 @@ public class Account{
     }
 
 
+    public String toString() {
+        return name;
+    }
 
     public int getId() {
         return id;

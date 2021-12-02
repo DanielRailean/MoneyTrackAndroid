@@ -119,6 +119,7 @@ public class ExpenseRepository {
 
             }
         });
+        getAll();
         return returned[0];
     }
     public Expense update(Expense item){

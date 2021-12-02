@@ -32,6 +32,8 @@ public class AllExpensesActivity extends AppCompatActivity implements ExpenseAda
 
     private Context expenseContext;
 
+
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,18 +45,8 @@ public class AllExpensesActivity extends AppCompatActivity implements ExpenseAda
 
         expenseViewModel = new ViewModelProvider(this).get(ExpenseViewModel.class);
 
-        expenseViewModel.getAll();
-
-        List<Expense> expenses = new ArrayList<>();
-        expenses.add(new Expense("Loading",0,""));
-
-        expenseAdapter = new ExpenseAdapter(expenses, this);
-        System.out.println("expenses : "+expenses);
-        expenseList.setAdapter(expenseAdapter);
-
         expenseViewModel.getAll().observe(this, expenses1 -> {
             expenseAdapter = new ExpenseAdapter(expenses1, (ExpenseAdapter.OnListItemClickListener) expenseContext);
-            System.out.println("expenses : "+ expenses1);
             expenseList.setAdapter(expenseAdapter);
         });
 
@@ -64,6 +56,7 @@ public class AllExpensesActivity extends AppCompatActivity implements ExpenseAda
             public void onClick(View view) {
                 Intent intent = new Intent(AllExpensesActivity.this, AddExpenseActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 

@@ -37,6 +37,12 @@ public class ServiceGenerator {
 
     private static UserAPI userAPI = retrofit.create(UserAPI.class);
     private static ExpenseAPI expenseAPI = retrofitAuth.create(ExpenseAPI.class);
+    private static AccountAPI accountAPI = retrofitAuth.create(AccountAPI.class);
+    private static CategoryAPI categoryAPI = retrofitAuth.create(CategoryAPI.class);
+    private static CurrencyAPI currencyAPI = retrofitAuth.create(CurrencyAPI.class);
+    private static IncomeAPI incomeAPI = retrofitAuth.create(IncomeAPI.class);
+    private static TransferAPI transferAPI = retrofitAuth.create(TransferAPI.class);
+
 
     public static UserAPI getUserAPI (){
         return userAPI;
@@ -44,5 +50,25 @@ public class ServiceGenerator {
 
     public static ExpenseAPI getExpenseAPI() {
         return expenseAPI;
+    }
+
+    public static AccountAPI getAccountAPI() {
+        return accountAPI;
+    }
+
+    public static CategoryAPI getCategoryAPI() {
+        return categoryAPI;
+    }
+
+    public static CurrencyAPI getCurrencyAPI() {
+        return currencyAPI;
+    }
+
+    public static IncomeAPI getIncomeAPI() {
+        return incomeAPI;
+    }
+
+    public static TransferAPI getTransferAPI() {
+        return transferAPI;
     }
 }

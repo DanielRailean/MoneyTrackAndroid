@@ -5,9 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.ddlele.moneytrack.R;
-import com.ddlele.moneytrack.ViewModel.ExpenseViewModel;
+import com.ddlele.moneytrack.ViewModel.AddExpenseViewModel;
 import com.ddlele.moneytrack.Wrappers.Account;
-import com.ddlele.moneytrack.Wrappers.ApiResponses.JWT;
 import com.ddlele.moneytrack.Wrappers.Category;
 import com.ddlele.moneytrack.Wrappers.Currency;
 import com.ddlele.moneytrack.Wrappers.Expense;
@@ -28,9 +27,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AddExpenseActivity extends AppCompatActivity {
     
@@ -38,7 +37,7 @@ public class AddExpenseActivity extends AppCompatActivity {
     EditText amount;
     Spinner currency;
     Spinner category;
-    Spinner accounts;
+    Spinner account;
     
     Button addButton;
 
@@ -50,9 +49,10 @@ public class AddExpenseActivity extends AppCompatActivity {
 
     boolean logged;
 
+    private Context expenseContext;
 
 
-    private ExpenseViewModel expenseViewModel;
+    private AddExpenseViewModel addExpenseViewModel;
 
     public static Context contextOfApplication;
 
@@ -67,25 +67,15 @@ public class AddExpenseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.add_expense);
-        
+
+        expenseContext = this;
+
         name = findViewById(R.id.e_nameField);
         amount = findViewById(R.id.e_amount);
         currency = findViewById(R.id.e_currency);
         category = findViewById(R.id.e_category);
-        accounts = findViewById(R.id.e_account);
+        account = findViewById(R.id.e_account);
         addButton = findViewById(R.id.addButton);
-
-        ArrayList<Currency> currencyArray = new ArrayList<Currency>();
-        ArrayList<Account> accountArray = new ArrayList<Account>();
-        ArrayList<Category> categoryArray = new ArrayList<Category>();
-
-        ArrayAdapter<Currency> spinnerCurrencyAdapter = new ArrayAdapter<Currency>(this, android.R.layout.simple_spinner_dropdown_item, currencyArray);
-        ArrayAdapter<Account> spinnerAccountAdapter = new ArrayAdapter<Account>(this, android.R.layout.simple_spinner_dropdown_item, accountArray);
-        ArrayAdapter<Category> spinnerCategoryAdapter = new ArrayAdapter<Category>(this, android.R.layout.simple_spinner_dropdown_item, categoryArray);
-
-        currency.setAdapter(spinnerCurrencyAdapter);
-        category.setAdapter(spinnerAccountAdapter);
-        accounts.setAdapter(spinnerCategoryAdapter);
 
         toolbar = findViewById(R.id.topAppBar);
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -96,74 +86,41 @@ public class AddExpenseActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        setupDrawerContent(navigationView);
-
-        expenseViewModel = new ViewModelProvider(this).get(ExpenseViewModel.class);
+        addExpenseViewModel = new ViewModelProvider(this).get(AddExpenseViewModel.class);
 //        displayExpenses();
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Expense item = new Expense(name.getText().toString(),((Account)accounts.getSelectedItem()).getId(),Integer.parseInt(amount.getText().toString()),currency.getId(),category.getId());
-                expenseViewModel.create(item);
+                Expense item = new Expense(name.getText().toString(),((Account) account.getSelectedItem()).getId(),Integer.parseInt(amount.getText().toString()),((Currency) currency.getSelectedItem()).getId(),((Category) category.getSelectedItem()).getId());
+                addExpenseViewModel.create(item);
                 Intent intent = new Intent(AddExpenseActivity.this, AllExpensesActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
+        addExpenseViewModel.getAllCategories().observe(this, new Observer<List<Category>>() {
+            @Override
+            public void onChanged(List<Category> categories) {
+                ArrayAdapter<Category> spinnerCategoryAdapter = new ArrayAdapter<Category>(contextOfApplication, android.R.layout.simple_spinner_dropdown_item, categories);
+                category.setAdapter(spinnerCategoryAdapter);
+            }
+        });
+        addExpenseViewModel.getAllCurrencies().observe(this, new Observer<List<Currency>>() {
+            @Override
+            public void onChanged(List<Currency> currencies) {
+                ArrayAdapter<Currency> spinnerCurrencyAdapter = new ArrayAdapter<Currency>(contextOfApplication, android.R.layout.simple_spinner_dropdown_item, currencies);
+                currency.setAdapter(spinnerCurrencyAdapter);
+            }
+        });
+        addExpenseViewModel.getAllAccounts().observe(this, new Observer<List<Account>>() {
+            @Override
+            public void onChanged(List<Account> accounts) {
+                ArrayAdapter<Account> spinnerAccountAdapter = new ArrayAdapter<Account>(contextOfApplication, android.R.layout.simple_spinner_dropdown_item, accounts);
+                account.setAdapter(spinnerAccountAdapter);
+            }
+        });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // The action bar home/up action should open or close the drawer.
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                drawerLayout.openDrawer(GravityCompat.START);
-                return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    public void goLogin(View v){
-        Intent intent = new Intent(AddExpenseActivity.this, LoginActivity.class);
-        startActivity(intent);
-        finish();
-    }
-    private void setupDrawerContent(NavigationView navigationView) {
-        navigationView.setNavigationItemSelectedListener(
-                menuItem -> {
-                    selectDrawerItem(menuItem);
-                    return true;
-                });
-    }
-    public void selectDrawerItem(MenuItem menuItem) {
-
-        Intent intent;
-        switch(menuItem.getItemId()) {
-            case R.id.nav_expenses:
-                intent= new Intent(AddExpenseActivity.this, AllExpensesActivity.class);
-
-                break;
-            case R.id.nav_incomes:
-                intent= new Intent(AddExpenseActivity.this, AddExpenseActivity.class);
-                break;
-
-            default:
-                intent= new Intent(AddExpenseActivity.this, MainActivity.class);
-        }
-
-        startActivity(intent);
-        finish();
-        menuItem.setChecked(true);
-        setTitle(menuItem.getTitle());
-        drawerLayout.closeDrawers();
-    }
 }

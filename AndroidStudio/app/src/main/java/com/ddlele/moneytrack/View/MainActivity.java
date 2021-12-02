@@ -1,10 +1,12 @@
 package com.ddlele.moneytrack.View;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.ddlele.moneytrack.R;
+import com.ddlele.moneytrack.Util.LocalStorage;
 import com.ddlele.moneytrack.ViewModel.UserViewModel;
 import com.ddlele.moneytrack.Wrappers.ApiResponses.JWT;
 import com.google.android.material.navigation.NavigationView;
@@ -45,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     public static Context getContextOfApplication(){
         return contextOfApplication;
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
