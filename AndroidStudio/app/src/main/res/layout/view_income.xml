@@ -38,7 +38,7 @@
             tools:layout_editor_absoluteX="0dp" />
 
         <EditText
-            android:id="@+id/e_edit_nameField"
+            android:id="@+id/income_edit_nameField"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="20dp"
@@ -51,7 +51,7 @@
             tools:layout_editor_absoluteX="20dp" />
 
         <EditText
-            android:id="@+id/e_edit_price"
+            android:id="@+id/income_edit_price"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="20dp"
@@ -61,11 +61,11 @@
             android:paddingLeft="15sp"
             android:textColor="#000000"
             android:textColorHint="#9C9C9C"
-            app:layout_constraintTop_toBottomOf="@+id/e_edit_nameField"
+            app:layout_constraintTop_toBottomOf="@+id/income_edit_nameField"
             tools:layout_editor_absoluteX="20dp" />
 
         <Spinner
-            android:id="@+id/e_edit_source"
+            android:id="@+id/income_edit_source"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="20dp"
@@ -74,10 +74,10 @@
             android:paddingLeft="15sp"
             android:textColor="#000000"
             android:textColorHint="#9C9C9C"
-            app:layout_constraintTop_toBottomOf="@+id/e_edit_price"
+            app:layout_constraintTop_toBottomOf="@+id/income_edit_price"
             tools:layout_editor_absoluteX="20dp" />
         <Spinner
-            android:id="@+id/e_edit_destination"
+            android:id="@+id/income_edit_destination"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="20dp"
@@ -86,11 +86,11 @@
             android:paddingLeft="15sp"
             android:textColor="#000000"
             android:textColorHint="#9C9C9C"
-            app:layout_constraintTop_toBottomOf="@+id/e_edit_source"
+            app:layout_constraintTop_toBottomOf="@+id/income_edit_source"
             tools:layout_editor_absoluteX="20dp" />
 
         <Button
-            android:id="@+id/e_editButton"
+            android:id="@+id/income_editButton"
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_margin="20dp"
@@ -105,10 +105,10 @@
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/e_edit_destination" />
+            app:layout_constraintTop_toBottomOf="@+id/income_edit_destination" />
 
         <Button
-            android:id="@+id/e_deleteButton"
+            android:id="@+id/income_deleteButton"
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_margin="20dp"
@@ -121,8 +121,8 @@
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/e_editButton"
-            app:layout_constraintTop_toBottomOf="@+id/e_edit_destination" />
+            app:layout_constraintStart_toEndOf="@+id/income_editButton"
+            app:layout_constraintTop_toBottomOf="@+id/income_edit_destination" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

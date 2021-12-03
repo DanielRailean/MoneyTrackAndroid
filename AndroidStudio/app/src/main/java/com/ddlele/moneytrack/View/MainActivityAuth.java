@@ -5,7 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.ddlele.moneytrack.R;
+import com.ddlele.moneytrack.View.Account.AllAccountActivity;
+import com.ddlele.moneytrack.View.Category.AllCategoryActivity;
+import com.ddlele.moneytrack.View.Currency.AllCurrencyActivity;
+import com.ddlele.moneytrack.View.Expense.AddExpenseActivity;
 import com.ddlele.moneytrack.View.Expense.AllExpenseActivity;
+import com.ddlele.moneytrack.View.Income.AllIncomeActivity;
+import com.ddlele.moneytrack.View.Transfer.AllTransferActivity;
 import com.ddlele.moneytrack.ViewModel.UserViewModel;
 import com.ddlele.moneytrack.Wrappers.ApiResponses.JWT;
 import com.google.android.material.navigation.NavigationView;
@@ -21,6 +27,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class MainActivityAuth extends AppCompatActivity {
 
@@ -81,17 +88,24 @@ public class MainActivityAuth extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // The action bar home/up action should open or close the drawer.
+
         switch (item.getItemId()) {
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
+                return true;
+
+            case R.id.action_settings:
+                userViewModel.logout();
+                Intent intent = new Intent(MainActivityAuth.this, MainActivity.class);
+                startActivity(intent);
+                finish();
                 return true;
         }
 
@@ -113,9 +127,20 @@ public class MainActivityAuth extends AppCompatActivity {
 
                 break;
             case R.id.nav_incomes:
-                intent= new Intent(MainActivityAuth.this, AllExpenseActivity.class);
+                intent= new Intent(MainActivityAuth.this, AllIncomeActivity.class);
                 break;
-
+            case R.id.nav_transfers:
+                intent= new Intent(MainActivityAuth.this, AllTransferActivity.class);
+                break;
+            case R.id.nav_currencies:
+                intent= new Intent(MainActivityAuth.this, AllCurrencyActivity.class);
+                break;
+            case R.id.nav_accounts:
+                intent= new Intent(MainActivityAuth.this, AllAccountActivity.class);
+                break;
+            case R.id.nav_categories:
+                intent= new Intent(MainActivityAuth.this, AllCategoryActivity.class);
+                break;
             default:
                 intent= new Intent(MainActivityAuth.this, AllExpenseActivity.class);
         }
@@ -127,4 +152,9 @@ public class MainActivityAuth extends AppCompatActivity {
         drawerLayout.closeDrawers();
     }
 
+    public void addNewExpense(View view) {
+        Intent intent= new Intent(MainActivityAuth.this, AddExpenseActivity.class);
+        startActivity(intent);
+
+    }
 }

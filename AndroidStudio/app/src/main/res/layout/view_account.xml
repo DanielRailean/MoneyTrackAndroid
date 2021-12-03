@@ -38,7 +38,7 @@
             tools:layout_editor_absoluteX="0dp" />
 
         <EditText
-            android:id="@+id/e_edit_nameField"
+            android:id="@+id/account_edit_nameField"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="20dp"
@@ -51,7 +51,7 @@
             tools:layout_editor_absoluteX="20dp" />
 
         <EditText
-            android:id="@+id/e_edit_price"
+            android:id="@+id/account_edit_balance"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="20dp"
@@ -61,11 +61,11 @@
             android:paddingLeft="15sp"
             android:textColor="#000000"
             android:textColorHint="#9C9C9C"
-            app:layout_constraintTop_toBottomOf="@+id/e_edit_nameField"
+            app:layout_constraintTop_toBottomOf="@+id/account_edit_nameField"
             tools:layout_editor_absoluteX="20dp" />
 
         <Spinner
-            android:id="@+id/e_edit_source"
+            android:id="@+id/account_edit_currency"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="20dp"
@@ -74,11 +74,11 @@
             android:paddingLeft="15sp"
             android:textColor="#000000"
             android:textColorHint="#9C9C9C"
-            app:layout_constraintTop_toBottomOf="@+id/e_edit_price"
+            app:layout_constraintTop_toBottomOf="@+id/account_edit_balance"
             tools:layout_editor_absoluteX="20dp" />
 
         <Button
-            android:id="@+id/e_editButton"
+            android:id="@+id/account_editButton"
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_margin="20dp"
@@ -93,10 +93,10 @@
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/e_edit_source" />
+            app:layout_constraintTop_toBottomOf="@+id/account_edit_currency" />
 
         <Button
-            android:id="@+id/e_deleteButton"
+            android:id="@+id/account_deleteButton"
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_margin="20dp"
@@ -109,8 +109,8 @@
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/e_editButton"
-            app:layout_constraintTop_toBottomOf="@+id/e_edit_source" />
+            app:layout_constraintStart_toEndOf="@+id/account_editButton"
+            app:layout_constraintTop_toBottomOf="@+id/account_edit_currency" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

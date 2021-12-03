@@ -44,7 +44,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
             holder.name.setText(categories.get(position).name.substring(0,15));
         }else
             holder.name.setText(categories.get(position).name);
-        holder.spent.setText(categories.get(position).currentSpent+"");
+        holder.spent.setText(categories.get(position).getCurrentSpent()+"");
+        holder.budget.setText(categories.get(position).getBudget()+"");
         holder.currency.setText(categories.get(position).currency.name);
     }
 
@@ -57,14 +58,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView name;
         TextView spent;
-        TextView remains;
+        TextView budget;
         TextView currency;
 
         ViewHolder(View itemView){
             super(itemView);
             name = itemView.findViewById(R.id.category_item_name);
             spent = itemView.findViewById(R.id.category_item_spent);
-            remains = itemView.findViewById(R.id.category_item_remains);
+            budget = itemView.findViewById(R.id.category_item_remains);
             currency = itemView.findViewById(R.id.category_item_currency);
             itemView.setOnClickListener(this);
         }

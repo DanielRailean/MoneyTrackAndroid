@@ -74,6 +74,7 @@ public class IncomeRepository {
             public void onResponse(Call<Income> call, Response<Income> response) {
                 if(response.code()==200){
                     returned[0] = response.body();
+
                 }
             }
 
@@ -93,6 +94,8 @@ public class IncomeRepository {
             public void onResponse(Call<Income> call, Response<Income> response) {
                 if(response.code()==200){
                     returned[0] = response.body();
+                    getAll();
+                    AccountRepository.getInstance().getAll();
                 }
             }
 
@@ -100,6 +103,7 @@ public class IncomeRepository {
             public void onFailure(Call<Income> call, Throwable t) {
 
             }
+
         });
         return returned[0];
     }
@@ -111,12 +115,18 @@ public class IncomeRepository {
             public void onResponse(Call<Income> call, Response<Income> response) {
                 if(response.code()==200){
                     returned[0] = response.body();
+                    getAll();
+                    AccountRepository.getInstance().getAll();
+                }else{
+                    Log.e("incomeAPI","call not 200");
                 }
             }
 
             @Override
             public void onFailure(Call<Income> call, Throwable t) {
-
+                Log.e("incomeAPI","call failed");
+                Log.e("incomeAPI", t.getMessage());
+                t.printStackTrace();
             }
         });
         return returned[0];
@@ -129,14 +139,24 @@ public class IncomeRepository {
             public void onResponse(Call<Income> call, Response<Income> response) {
                 if(response.code()==200){
                     returned[0] = response.body();
+                    getAll();
+                    AccountRepository.getInstance().getAll();
+
+                }else{
+                    Log.e("incomeAPI","call not 200");
+                    Log.e("incomeAPI",response.code()+"");
+                    Log.e("incomeAPI",response.message());
                 }
             }
 
             @Override
             public void onFailure(Call<Income> call, Throwable t) {
-
+                Log.e("incomeAPI","call failed");
+                Log.e("incomeAPI", t.getMessage());
+                t.printStackTrace();
             }
         });
+        getAll();
         return returned[0];
     }
 }

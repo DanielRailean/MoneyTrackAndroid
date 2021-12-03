@@ -46,7 +46,6 @@ public class CategoryRepository {
                     allCategories.setValue(response.body());
                 }else{
                     Log.e("categoryAPI","call not 200");
-                    Log.e("categoryApi",response.message());
                 }
             }
 
@@ -69,6 +68,7 @@ public class CategoryRepository {
             public void onResponse(Call<Category> call, Response<Category> response) {
                 if(response.code()==200){
                     returned[0] = response.body();
+
                 }
             }
 
@@ -88,6 +88,7 @@ public class CategoryRepository {
             public void onResponse(Call<Category> call, Response<Category> response) {
                 if(response.code()==200){
                     returned[0] = response.body();
+                    getAll();
                 }
             }
 
@@ -95,6 +96,7 @@ public class CategoryRepository {
             public void onFailure(Call<Category> call, Throwable t) {
 
             }
+
         });
         return returned[0];
     }
@@ -106,12 +108,18 @@ public class CategoryRepository {
             public void onResponse(Call<Category> call, Response<Category> response) {
                 if(response.code()==200){
                     returned[0] = response.body();
+                    getAll();
+
+                }else{
+                    Log.e("categoryAPI","call not 200");
                 }
             }
 
             @Override
             public void onFailure(Call<Category> call, Throwable t) {
-
+                Log.e("categoryAPI","call failed");
+                Log.e("categoryAPI", t.getMessage());
+                t.printStackTrace();
             }
         });
         return returned[0];
@@ -124,14 +132,22 @@ public class CategoryRepository {
             public void onResponse(Call<Category> call, Response<Category> response) {
                 if(response.code()==200){
                     returned[0] = response.body();
+                    getAll();
+                }else{
+                    Log.e("categoryAPI","call not 200");
+                    Log.e("categoryAPI",response.code()+"");
+                    Log.e("categoryAPI",response.message());
                 }
             }
 
             @Override
             public void onFailure(Call<Category> call, Throwable t) {
-
+                Log.e("categoryAPI","call failed");
+                Log.e("categoryAPI", t.getMessage());
+                t.printStackTrace();
             }
         });
+        getAll();
         return returned[0];
     }
 }

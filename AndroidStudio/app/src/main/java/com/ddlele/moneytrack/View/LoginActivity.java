@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
         setupDrawerContent(navigationView);
 
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
-//        displayExpenses();
+
         userViewModel.getToken().observe(this, new Observer<JWT>() {
             @Override
             public void onChanged(JWT jwt) {
@@ -85,6 +85,9 @@ public class LoginActivity extends AppCompatActivity {
                     email.setVisibility(View.INVISIBLE);
                     loginButton.setText("LOGOUT");
                     logged = true;
+                    Intent intent = new Intent(LoginActivity.this, MainActivityAuth.class);
+                    startActivity(intent);
+                    finish();
                 }else{
                     password.setVisibility(View.VISIBLE);
                     email.setVisibility(View.VISIBLE);
@@ -105,7 +108,6 @@ public class LoginActivity extends AppCompatActivity {
                 if(email.getText().toString().equals("")||email.getText().toString().equals("")) return;
 
                 User toLogin = new User(email.getText().toString(),password.getText().toString());
-                textView.setText(toLogin.toString());
 
                 userViewModel.login(toLogin);
             }

@@ -7,5 +7,18 @@
         <item
             android:id="@+id/nav_incomes"
             android:title="Incomes" />
+        <item
+            android:id="@+id/nav_transfers"
+            android:title="Transfers" />
+        <item
+            android:id="@+id/nav_currencies"
+            android:title="Currencies" />
+        <item
+            android:id="@+id/nav_categories"
+            android:title="Categories" />
+        <item
+            android:id="@+id/nav_accounts"
+            android:title="Accounts" />
+
     </group>
 </menu>

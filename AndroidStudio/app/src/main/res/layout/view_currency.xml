@@ -38,7 +38,7 @@
             tools:layout_editor_absoluteX="0dp" />
 
         <EditText
-            android:id="@+id/e_edit_nameField"
+            android:id="@+id/currency_edit_nameField"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="20dp"
@@ -51,7 +51,7 @@
             tools:layout_editor_absoluteX="20dp" />
 
         <EditText
-            android:id="@+id/e_edit_price"
+            android:id="@+id/currency_edit_price"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="20dp"
@@ -61,11 +61,11 @@
             android:paddingLeft="15sp"
             android:textColor="#000000"
             android:textColorHint="#9C9C9C"
-            app:layout_constraintTop_toBottomOf="@+id/e_edit_nameField"
+            app:layout_constraintTop_toBottomOf="@+id/currency_edit_nameField"
             tools:layout_editor_absoluteX="20dp" />
 
         <Button
-            android:id="@+id/e_editButton"
+            android:id="@+id/currency_editButton"
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_margin="20dp"
@@ -80,10 +80,10 @@
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/e_edit_price" />
+            app:layout_constraintTop_toBottomOf="@+id/currency_edit_price" />
 
         <Button
-            android:id="@+id/e_deleteButton"
+            android:id="@+id/currency_deleteButton"
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_margin="20dp"
@@ -96,8 +96,8 @@
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/e_editButton"
-            app:layout_constraintTop_toBottomOf="@+id/e_edit_price" />
+            app:layout_constraintStart_toEndOf="@+id/currency_editButton"
+            app:layout_constraintTop_toBottomOf="@+id/currency_edit_price" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

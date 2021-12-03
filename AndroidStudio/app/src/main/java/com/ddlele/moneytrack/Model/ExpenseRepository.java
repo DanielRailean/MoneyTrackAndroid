@@ -95,6 +95,8 @@ public class ExpenseRepository {
                 if(response.code()==200){
                     returned[0] = response.body();
                     getAll();
+                    AccountRepository.getInstance().getAll();
+                    CategoryRepository.getInstance().getAll();
                 }
             }
 
@@ -115,6 +117,8 @@ public class ExpenseRepository {
                 if(response.code()==200){
                     returned[0] = response.body();
                     getAll();
+                    AccountRepository.getInstance().getAll();
+                    CategoryRepository.getInstance().getAll();
 
                 }else{
                     Log.e("expenseAPI","call not 200");
@@ -139,6 +143,8 @@ public class ExpenseRepository {
                 if(response.code()==200){
                     returned[0] = response.body();
                     getAll();
+                    AccountRepository.getInstance().getAll();
+                    CategoryRepository.getInstance().getAll();
                 }else{
                     Log.e("expenseAPI","call not 200");
                     Log.e("expenseAPI",response.code()+"");

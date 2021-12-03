@@ -68,6 +68,7 @@ public class CurrencyRepository {
             public void onResponse(Call<Currency> call, Response<Currency> response) {
                 if(response.code()==200){
                     returned[0] = response.body();
+
                 }
             }
 
@@ -87,6 +88,7 @@ public class CurrencyRepository {
             public void onResponse(Call<Currency> call, Response<Currency> response) {
                 if(response.code()==200){
                     returned[0] = response.body();
+                    getAll();
                 }
             }
 
@@ -94,6 +96,7 @@ public class CurrencyRepository {
             public void onFailure(Call<Currency> call, Throwable t) {
 
             }
+
         });
         return returned[0];
     }
@@ -105,12 +108,18 @@ public class CurrencyRepository {
             public void onResponse(Call<Currency> call, Response<Currency> response) {
                 if(response.code()==200){
                     returned[0] = response.body();
+                    getAll();
+
+                }else{
+                    Log.e("currencyAPI","call not 200");
                 }
             }
 
             @Override
             public void onFailure(Call<Currency> call, Throwable t) {
-
+                Log.e("currencyAPI","call failed");
+                Log.e("currencyAPI", t.getMessage());
+                t.printStackTrace();
             }
         });
         return returned[0];
@@ -123,14 +132,22 @@ public class CurrencyRepository {
             public void onResponse(Call<Currency> call, Response<Currency> response) {
                 if(response.code()==200){
                     returned[0] = response.body();
+                    getAll();
+                }else{
+                    Log.e("currencyAPI","call not 200");
+                    Log.e("currencyAPI",response.code()+"");
+                    Log.e("currencyAPI",response.message());
                 }
             }
 
             @Override
             public void onFailure(Call<Currency> call, Throwable t) {
-
+                Log.e("currencyAPI","call failed");
+                Log.e("currencyAPI", t.getMessage());
+                t.printStackTrace();
             }
         });
+        getAll();
         return returned[0];
     }
 }

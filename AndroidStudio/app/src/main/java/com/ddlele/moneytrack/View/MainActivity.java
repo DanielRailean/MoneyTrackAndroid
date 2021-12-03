@@ -25,12 +25,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     Button loginButton;
     Button registerButton;
     ProgressBar progressBar;
+    TextView mainText;
+
 
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
@@ -61,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.loginButton);
         registerButton = findViewById(R.id.registerButton);
         progressBar = findViewById(R.id.progressBar);
+        mainText = findViewById(R.id.main_message);
+
+        mainText.setText("Please login or sign up to continue");
 
         toolbar = findViewById(R.id.topAppBar);
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -85,8 +91,11 @@ public class MainActivity extends AppCompatActivity {
                     progressBar.setVisibility(View.VISIBLE);
                     loginButton.setVisibility(View.INVISIBLE);
                     registerButton.setVisibility(View.INVISIBLE);
+                    mainText.setText("Logging you in!");
+
                 }else if
                 (jwt.getToken().equals("empty")){
+                    mainText.setText("Please login or sign up to continue");
                     loginButton.setVisibility(View.VISIBLE);
                     registerButton.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.INVISIBLE);

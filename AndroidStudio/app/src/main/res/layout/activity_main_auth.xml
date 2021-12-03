@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clickable="true"
+
     android:focusableInTouchMode="true">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -31,10 +32,36 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="#FAFAFA"
             android:gravity="center"
+            android:background="@color/rblue"
             tools:context=".MainActivity">
 
+            <TextView
+                android:id="@+id/auth_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Welcome Back!"
+                android:gravity="center"
+                android:layout_marginBottom="10sp"
+                android:textSize="30sp"
+                android:textColor="#ffffff"/>
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="200sp"
+                android:layout_height="200sp"
+                app:srcCompat="@drawable/favicon" />
+            <Button
+                android:id="@+id/add_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10sp"
+                android:layout_marginTop="20sp"
+                android:text="Add New Expense"
+                android:gravity="center"
+                android:layout_marginBottom="10sp"
+                android:textSize="30sp"
+                android:onClick="addNewExpense"
+                android:textColor="#ffffff"/>
         </LinearLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

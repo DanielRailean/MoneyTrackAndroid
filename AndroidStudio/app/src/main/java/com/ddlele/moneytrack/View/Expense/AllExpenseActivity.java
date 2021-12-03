@@ -49,7 +49,6 @@ public class AllExpenseActivity extends AppCompatActivity implements ExpenseAdap
             public void onClick(View view) {
                 Intent intent = new Intent(AllExpenseActivity.this, AddExpenseActivity.class);
                 startActivity(intent);
-                finish();
             }
         });
 
@@ -61,6 +60,5 @@ public class AllExpenseActivity extends AppCompatActivity implements ExpenseAdap
         Intent intent = new Intent(AllExpenseActivity.this, ViewExpenseActivity.class);
         intent.putExtra("expenseId", clickedItemIndex);
         startActivity(intent);
-        finish();
     }
 }

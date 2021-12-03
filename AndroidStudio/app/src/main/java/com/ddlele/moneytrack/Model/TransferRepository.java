@@ -74,6 +74,7 @@ public class TransferRepository {
             public void onResponse(Call<Transfer> call, Response<Transfer> response) {
                 if(response.code()==200){
                     returned[0] = response.body();
+
                 }
             }
 
@@ -93,6 +94,9 @@ public class TransferRepository {
             public void onResponse(Call<Transfer> call, Response<Transfer> response) {
                 if(response.code()==200){
                     returned[0] = response.body();
+                    getAll();
+                    AccountRepository.getInstance().getAll();
+
                 }
             }
 
@@ -100,6 +104,7 @@ public class TransferRepository {
             public void onFailure(Call<Transfer> call, Throwable t) {
 
             }
+
         });
         return returned[0];
     }
@@ -111,12 +116,19 @@ public class TransferRepository {
             public void onResponse(Call<Transfer> call, Response<Transfer> response) {
                 if(response.code()==200){
                     returned[0] = response.body();
+                    getAll();
+                    AccountRepository.getInstance().getAll();
+
+                }else{
+                    Log.e("transferAPI","call not 200");
                 }
             }
 
             @Override
             public void onFailure(Call<Transfer> call, Throwable t) {
-
+                Log.e("transferAPI","call failed");
+                Log.e("transferAPI", t.getMessage());
+                t.printStackTrace();
             }
         });
         return returned[0];
@@ -129,14 +141,24 @@ public class TransferRepository {
             public void onResponse(Call<Transfer> call, Response<Transfer> response) {
                 if(response.code()==200){
                     returned[0] = response.body();
+                    getAll();
+                    AccountRepository.getInstance().getAll();
+
+                }else{
+                    Log.e("transferAPI","call not 200");
+                    Log.e("transferAPI",response.code()+"");
+                    Log.e("transferAPI",response.message());
                 }
             }
 
             @Override
             public void onFailure(Call<Transfer> call, Throwable t) {
-
+                Log.e("transferAPI","call failed");
+                Log.e("transferAPI", t.getMessage());
+                t.printStackTrace();
             }
         });
+        getAll();
         return returned[0];
     }
 }

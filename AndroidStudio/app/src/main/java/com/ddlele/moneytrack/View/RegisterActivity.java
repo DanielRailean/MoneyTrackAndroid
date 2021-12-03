@@ -78,7 +78,6 @@ public class RegisterActivity extends AppCompatActivity {
         setupDrawerContent(navigationView);
 
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
-//        displayExpenses();
         userViewModel.getToken().observe(this, new Observer<JWT>() {
             @Override
             public void onChanged(JWT jwt) {
@@ -95,6 +94,9 @@ public class RegisterActivity extends AppCompatActivity {
                     name.setVisibility(View.INVISIBLE);
                     registerButton.setText("LOGOUT");
                     logged = true;
+                    Intent intent = new Intent(RegisterActivity.this, MainActivityAuth.class);
+                    startActivity(intent);
+                    finish();
                 }
             }
         });

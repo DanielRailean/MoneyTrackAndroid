@@ -41,11 +41,6 @@ public class ViewExpenseActivity extends AppCompatActivity {
     Button deleteButton;
 
 
-    private DrawerLayout drawerLayout;
-    private Toolbar toolbar;
-    private NavigationView navigationView;
-
-
     boolean logged;
 
     private Context expenseContext;
@@ -73,8 +68,6 @@ public class ViewExpenseActivity extends AppCompatActivity {
         expenseContext = this;
 
 
-
-
         name = findViewById(R.id.e_edit_nameField);
         amount = findViewById(R.id.e_edit_price);
         currency = findViewById(R.id.e_edit_source);
@@ -83,13 +76,6 @@ public class ViewExpenseActivity extends AppCompatActivity {
         editButton = findViewById(R.id.e_editButton);
         deleteButton = findViewById(R.id.e_deleteButton);
 
-        toolbar = findViewById(R.id.topAppBar);
-        drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.navigationView);
-
-        setSupportActionBar(toolbar);
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         addExpenseViewModel = new ViewModelProvider(this).get(AddExpenseViewModel.class);
 
@@ -114,8 +100,6 @@ public class ViewExpenseActivity extends AppCompatActivity {
                 expense.setCategoryId(((Category) category.getSelectedItem()).getId());
                 System.out.println(expense);
                 expenseViewModel.update(expense);
-                Intent intent = new Intent(ViewExpenseActivity.this, AllExpenseActivity.class);
-                startActivity(intent);
                 finish();
 
             }
@@ -124,8 +108,6 @@ public class ViewExpenseActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 expenseViewModel.delete(expense.id);
-                Intent intent = new Intent(ViewExpenseActivity.this, AllExpenseActivity.class);
-                startActivity(intent);
                 finish();
 
             }

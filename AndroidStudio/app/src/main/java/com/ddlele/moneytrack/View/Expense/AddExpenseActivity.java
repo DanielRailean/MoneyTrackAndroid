@@ -83,7 +83,6 @@ public class AddExpenseActivity extends AppCompatActivity {
 
 
         addExpenseViewModel = new ViewModelProvider(this).get(AddExpenseViewModel.class);
-//        displayExpenses();
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override

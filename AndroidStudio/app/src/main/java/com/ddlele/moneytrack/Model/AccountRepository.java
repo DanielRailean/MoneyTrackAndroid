@@ -52,8 +52,6 @@ public class AccountRepository {
                     allAccounts.setValue(response.body());
                 }else{
                     Log.e("accountAPI","call not 200");
-                    Log.e("accountAPI",response.message());
-
                 }
             }
 
@@ -76,6 +74,7 @@ public class AccountRepository {
             public void onResponse(Call<Account> call, Response<Account> response) {
                 if(response.code()==200){
                     returned[0] = response.body();
+
                 }
             }
 
@@ -95,6 +94,7 @@ public class AccountRepository {
             public void onResponse(Call<Account> call, Response<Account> response) {
                 if(response.code()==200){
                     returned[0] = response.body();
+                    getAll();
                 }
             }
 
@@ -102,6 +102,7 @@ public class AccountRepository {
             public void onFailure(Call<Account> call, Throwable t) {
 
             }
+
         });
         return returned[0];
     }
@@ -113,12 +114,18 @@ public class AccountRepository {
             public void onResponse(Call<Account> call, Response<Account> response) {
                 if(response.code()==200){
                     returned[0] = response.body();
+                    getAll();
+
+                }else{
+                    Log.e("accountAPI","call not 200");
                 }
             }
 
             @Override
             public void onFailure(Call<Account> call, Throwable t) {
-
+                Log.e("accountAPI","call failed");
+                Log.e("accountAPI", t.getMessage());
+                t.printStackTrace();
             }
         });
         return returned[0];
@@ -131,14 +138,22 @@ public class AccountRepository {
             public void onResponse(Call<Account> call, Response<Account> response) {
                 if(response.code()==200){
                     returned[0] = response.body();
+                    getAll();
+                }else{
+                    Log.e("accountAPI","call not 200");
+                    Log.e("accountAPI",response.code()+"");
+                    Log.e("accountAPI",response.message());
                 }
             }
 
             @Override
             public void onFailure(Call<Account> call, Throwable t) {
-
+                Log.e("accountAPI","call failed");
+                Log.e("accountAPI", t.getMessage());
+                t.printStackTrace();
             }
         });
+        getAll();
         return returned[0];
     }
 }
