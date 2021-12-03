@@ -30,7 +30,7 @@ public class AllExpenseActivity extends AppCompatActivity implements ExpenseAdap
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_expenses);
+        setContentView(R.layout.activity_expense);
 
         expenseContext = this;
         expenseList = findViewById(R.id.recyclerExpenses);

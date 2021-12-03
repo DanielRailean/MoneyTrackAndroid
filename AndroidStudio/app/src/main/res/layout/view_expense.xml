@@ -51,7 +51,7 @@
             tools:layout_editor_absoluteX="20dp" />
 
         <EditText
-            android:id="@+id/e_edit_amount"
+            android:id="@+id/e_edit_price"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="20dp"
@@ -65,7 +65,7 @@
             tools:layout_editor_absoluteX="20dp" />
 
         <Spinner
-            android:id="@+id/e_edit_currency"
+            android:id="@+id/e_edit_source"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="20dp"
@@ -74,10 +74,10 @@
             android:paddingLeft="15sp"
             android:textColor="#000000"
             android:textColorHint="#9C9C9C"
-            app:layout_constraintTop_toBottomOf="@+id/e_edit_amount"
+            app:layout_constraintTop_toBottomOf="@+id/e_edit_price"
             tools:layout_editor_absoluteX="20dp" />
         <Spinner
-            android:id="@+id/e_edit_account"
+            android:id="@+id/e_edit_destination"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="20dp"
@@ -86,7 +86,7 @@
             android:paddingLeft="15sp"
             android:textColor="#000000"
             android:textColorHint="#9C9C9C"
-            app:layout_constraintTop_toBottomOf="@+id/e_edit_currency"
+            app:layout_constraintTop_toBottomOf="@+id/e_edit_source"
             tools:layout_editor_absoluteX="20dp" />
         <Spinner
             android:id="@+id/e_edit_category"
@@ -98,7 +98,7 @@
             android:paddingLeft="15sp"
             android:textColor="#000000"
             android:textColorHint="#9C9C9C"
-            app:layout_constraintTop_toBottomOf="@+id/e_edit_account"
+            app:layout_constraintTop_toBottomOf="@+id/e_edit_destination"
             tools:layout_editor_absoluteX="20dp" />
 
         <Button

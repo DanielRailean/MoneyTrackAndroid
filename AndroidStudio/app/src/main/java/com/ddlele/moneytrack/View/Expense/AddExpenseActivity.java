@@ -67,10 +67,10 @@ public class AddExpenseActivity extends AppCompatActivity {
         expenseContext = this;
 
         name = findViewById(R.id.e_edit_nameField);
-        amount = findViewById(R.id.e_edit_amount);
-        currency = findViewById(R.id.e_edit_currency);
+        amount = findViewById(R.id.e_edit_price);
+        currency = findViewById(R.id.e_edit_source);
         category = findViewById(R.id.e_category);
-        account = findViewById(R.id.e_edit_account);
+        account = findViewById(R.id.e_edit_destination);
         addButton = findViewById(R.id.addButton);
 
         toolbar = findViewById(R.id.topAppBar);

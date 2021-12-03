@@ -4,7 +4,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -62,9 +61,9 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ViewHold
 
         ViewHolder(View itemView){
             super(itemView);
-            name = itemView.findViewById(R.id.tv_name);
-            amount = itemView.findViewById(R.id.tv_amount);
-            currency = itemView.findViewById(R.id.tv_currency);
+            name = itemView.findViewById(R.id.e_item_name);
+            amount = itemView.findViewById(R.id.e_item_amount);
+            currency = itemView.findViewById(R.id.e_item_currency);
             itemView.setOnClickListener(this);
         }
 

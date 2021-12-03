@@ -76,10 +76,10 @@ public class ViewExpenseActivity extends AppCompatActivity {
 
 
         name = findViewById(R.id.e_edit_nameField);
-        amount = findViewById(R.id.e_edit_amount);
-        currency = findViewById(R.id.e_edit_currency);
+        amount = findViewById(R.id.e_edit_price);
+        currency = findViewById(R.id.e_edit_source);
         category = findViewById(R.id.e_edit_category);
-        account = findViewById(R.id.e_edit_account);
+        account = findViewById(R.id.e_edit_destination);
         editButton = findViewById(R.id.e_editButton);
         deleteButton = findViewById(R.id.e_deleteButton);
 

@@ -59,8 +59,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         textView = findViewById(R.id.mainText);
-        email = findViewById(R.id.e_edit_amount);
-        password = findViewById(R.id.e_edit_currency);
+        email = findViewById(R.id.e_edit_price);
+        password = findViewById(R.id.e_edit_source);
         loginButton = findViewById(R.id.loginButton);
 
 

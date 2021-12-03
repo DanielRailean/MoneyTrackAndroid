@@ -10,7 +10,7 @@
     android:paddingRight="5sp">
 
     <TextView
-        android:id="@+id/tv_name"
+        android:id="@+id/e_item_name"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="6"
@@ -20,7 +20,7 @@
         android:padding="5sp"
         />
     <TextView
-        android:id="@+id/tv_amount"
+        android:id="@+id/e_item_amount"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="2"
@@ -29,7 +29,7 @@
         android:text="20"
         android:padding="5sp"/>
     <TextView
-        android:id="@+id/tv_currency"
+        android:id="@+id/e_item_currency"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="2"

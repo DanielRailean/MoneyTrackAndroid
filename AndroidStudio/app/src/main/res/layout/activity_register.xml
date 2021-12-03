@@ -57,7 +57,7 @@
                 android:textColorHint="#9C9C9C" />
 
             <EditText
-                android:id="@+id/e_edit_amount"
+                android:id="@+id/e_edit_price"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_margin="20dp"
@@ -69,7 +69,7 @@
                 android:inputType="textEmailAddress"/>
 
             <EditText
-                android:id="@+id/e_edit_currency"
+                android:id="@+id/e_edit_source"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_margin="20dp"

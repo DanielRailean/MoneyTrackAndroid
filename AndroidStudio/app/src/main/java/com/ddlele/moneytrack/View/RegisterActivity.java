@@ -61,8 +61,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         textView = findViewById(R.id.mainText);
         name = findViewById(R.id.e_edit_nameField);
-        email = findViewById(R.id.e_edit_amount);
-        password = findViewById(R.id.e_edit_currency);
+        email = findViewById(R.id.e_edit_price);
+        password = findViewById(R.id.e_edit_source);
         registerButton = findViewById(R.id.registerButton);
 
 
