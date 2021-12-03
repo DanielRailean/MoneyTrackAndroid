@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="80dp"
             android:gravity="center"
-            android:text="Add Expense"
+            android:text="Edit Expense"
             android:textColor="@color/rblue"
             android:textSize="28sp"
             app:layout_constraintTop_toTopOf="parent"
@@ -82,19 +82,19 @@
             android:layout_height="50dp"
             android:layout_margin="20dp"
             android:background="@drawable/edittextdesign"
-            android:hint="Currency"
+            android:hint="Account"
             android:paddingLeft="15sp"
             android:textColor="#000000"
             android:textColorHint="#9C9C9C"
             app:layout_constraintTop_toBottomOf="@+id/e_edit_currency"
             tools:layout_editor_absoluteX="20dp" />
         <Spinner
-            android:id="@+id/e_category"
+            android:id="@+id/e_edit_category"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="20dp"
             android:background="@drawable/edittextdesign"
-            android:hint="Currency"
+            android:hint="Category"
             android:paddingLeft="15sp"
             android:textColor="#000000"
             android:textColorHint="#9C9C9C"
@@ -102,8 +102,26 @@
             tools:layout_editor_absoluteX="20dp" />
 
         <Button
-            android:id="@+id/addButton"
-            android:layout_width="match_parent"
+            android:id="@+id/e_editButton"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_margin="20dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/buttondesign"
+            android:shadowColor="#FAFAFA"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="14"
+            android:text="save"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/e_edit_category" />
+
+        <Button
+            android:id="@+id/e_deleteButton"
+            android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_margin="20dp"
             android:background="@drawable/buttondesign"
@@ -111,11 +129,12 @@
             android:shadowDx="0"
             android:shadowDy="0"
             android:shadowRadius="14"
-            android:text="@string/add"
+            android:text="delete"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
-            app:layout_constraintTop_toBottomOf="@+id/e_category"
-            tools:layout_editor_absoluteX="20dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/e_editButton"
+            app:layout_constraintTop_toBottomOf="@+id/e_edit_category" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

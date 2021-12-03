@@ -65,7 +65,9 @@ public class AllExpensesActivity extends AppCompatActivity implements ExpenseAda
 
     @Override
     public void onListItemClick(int clickedItemIndex) {
-        int pokemonNumber = clickedItemIndex + 1;
-        Toast.makeText(this, "Expense Number: " + pokemonNumber, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(AllExpensesActivity.this, ViewExpenseActivity.class);
+        intent.putExtra("expenseId", clickedItemIndex);
+        startActivity(intent);
+        finish();
     }
 }

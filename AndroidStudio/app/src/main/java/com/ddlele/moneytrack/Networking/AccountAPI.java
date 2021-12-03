@@ -21,8 +21,8 @@ public interface AccountAPI {
     Call<Account> get(@Path("Id") long id);
     @PUT("account")
     Call<Account> update(@Body Account item);
-    @DELETE
-    Call<Account> delete(@Path("Id") long id);
+    @DELETE("account/{id}")
+    Call<Account> delete(@Path("id") long id);
 
 
 }

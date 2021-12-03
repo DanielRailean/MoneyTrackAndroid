@@ -12,6 +12,16 @@ import java.util.List;
 public class ExpenseViewModel extends ViewModel {
     private ExpenseRepository repository;
 
+    private Expense edited;
+
+    public Expense getEdited() {
+        return edited;
+    }
+
+    public void setEdited(Expense edited) {
+        this.edited = edited;
+    }
+
     public ExpenseViewModel(){
         repository = ExpenseRepository.getInstance();
     }

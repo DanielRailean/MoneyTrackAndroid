@@ -32,6 +32,10 @@
             android:exported="true"
             android:label="AddExpenseActivity" />
         <activity
+            android:name=".View.ViewExpenseActivity"
+            android:exported="true"
+            android:label="ViewExpenseActivity" />
+        <activity
             android:name=".View.MainActivity"
             android:exported="true"
             android:label="@string/app_name"

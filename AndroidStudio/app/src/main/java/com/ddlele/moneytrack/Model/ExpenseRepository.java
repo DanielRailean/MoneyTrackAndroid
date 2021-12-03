@@ -74,6 +74,7 @@ public class ExpenseRepository {
             public void onResponse(Call<Expense> call, Response<Expense> response) {
                 if(response.code()==200){
                    returned[0] = response.body();
+
                 }
             }
 
@@ -93,6 +94,7 @@ public class ExpenseRepository {
             public void onResponse(Call<Expense> call, Response<Expense> response) {
                 if(response.code()==200){
                     returned[0] = response.body();
+                    getAll();
                 }
             }
 
@@ -100,6 +102,7 @@ public class ExpenseRepository {
             public void onFailure(Call<Expense> call, Throwable t) {
 
             }
+
         });
         return returned[0];
     }
@@ -111,15 +114,20 @@ public class ExpenseRepository {
             public void onResponse(Call<Expense> call, Response<Expense> response) {
                 if(response.code()==200){
                     returned[0] = response.body();
+                    getAll();
+
+                }else{
+                    Log.e("expenseAPI","call not 200");
                 }
             }
 
             @Override
             public void onFailure(Call<Expense> call, Throwable t) {
-
+                Log.e("expenseAPI","call failed");
+                Log.e("expenseAPI", t.getMessage());
+                t.printStackTrace();
             }
         });
-        getAll();
         return returned[0];
     }
     public Expense update(Expense item){
@@ -130,14 +138,22 @@ public class ExpenseRepository {
             public void onResponse(Call<Expense> call, Response<Expense> response) {
                 if(response.code()==200){
                     returned[0] = response.body();
+                    getAll();
+                }else{
+                    Log.e("expenseAPI","call not 200");
+                    Log.e("expenseAPI",response.code()+"");
+                    Log.e("expenseAPI",response.message());
                 }
             }
 
             @Override
             public void onFailure(Call<Expense> call, Throwable t) {
-
+                Log.e("expenseAPI","call failed");
+                Log.e("expenseAPI", t.getMessage());
+                t.printStackTrace();
             }
         });
+        getAll();
         return returned[0];
     }
 }

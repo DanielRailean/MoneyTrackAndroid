@@ -21,8 +21,8 @@ public interface ExpenseAPI {
     Call<Expense> get(@Path("Id") long id);
     @PUT("expense")
     Call<Expense> update(@Body Expense item);
-    @DELETE
-    Call<Expense> delete(@Path("Id") long id);
+    @DELETE("expense/{id}")
+    Call<Expense> delete(@Path("id") long id);
 
 
 }

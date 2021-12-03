@@ -140,4 +140,22 @@ public class Expense {
     public void setUserPriority(int userPriority) {
         this.userPriority = userPriority;
     }
+
+    @Override
+    public String toString() {
+        return "Expense{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", accountId=" + accountId +
+                ", account=" + account +
+                ", amount=" + amount +
+                ", currencyId=" + currencyId +
+                ", currency=" + currency +
+                ", authorId=" + authorId +
+                ", categoryId=" + categoryId +
+                ", category=" + category +
+                ", dateCreated='" + dateCreated + '\'' +
+                ", userPriority=" + userPriority +
+                '}';
+    }
 }

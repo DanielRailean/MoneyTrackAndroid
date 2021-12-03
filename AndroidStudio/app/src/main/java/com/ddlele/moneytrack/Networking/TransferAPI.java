@@ -21,8 +21,8 @@ public interface TransferAPI {
     Call<Transfer> get(@Path("Id") long id);
     @PUT("transfer")
     Call<Transfer> update(@Body Transfer item);
-    @DELETE
-    Call<Transfer> delete(@Path("Id") long id);
+    @DELETE("transfer/{id}")
+    Call<Transfer> delete(@Path("id") long id);
 
 
 }

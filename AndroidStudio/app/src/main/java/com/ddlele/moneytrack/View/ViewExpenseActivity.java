@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.ddlele.moneytrack.R;
 import com.ddlele.moneytrack.ViewModel.AddExpenseViewModel;
+import com.ddlele.moneytrack.ViewModel.ExpenseViewModel;
 import com.ddlele.moneytrack.Wrappers.Account;
 import com.ddlele.moneytrack.Wrappers.Category;
 import com.ddlele.moneytrack.Wrappers.Currency;
@@ -26,16 +27,18 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class AddExpenseActivity extends AppCompatActivity {
-    
+public class ViewExpenseActivity extends AppCompatActivity {
+
     EditText name;
     EditText amount;
     Spinner currency;
     Spinner category;
     Spinner account;
-    
-    Button addButton;
+
+    Button editButton;
+    Button deleteButton;
 
 
     private DrawerLayout drawerLayout;
@@ -47,8 +50,11 @@ public class AddExpenseActivity extends AppCompatActivity {
 
     private Context expenseContext;
 
+    Expense expense;
 
     private AddExpenseViewModel addExpenseViewModel;
+
+    private ExpenseViewModel expenseViewModel;
 
     public static Context contextOfApplication;
 
@@ -62,16 +68,20 @@ public class AddExpenseActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.add_expense);
+        setContentView(R.layout.view_expense);
 
         expenseContext = this;
+
+
+
 
         name = findViewById(R.id.e_edit_nameField);
         amount = findViewById(R.id.e_edit_amount);
         currency = findViewById(R.id.e_edit_currency);
-        category = findViewById(R.id.e_category);
+        category = findViewById(R.id.e_edit_category);
         account = findViewById(R.id.e_edit_account);
-        addButton = findViewById(R.id.addButton);
+        editButton = findViewById(R.id.e_editButton);
+        deleteButton = findViewById(R.id.e_deleteButton);
 
         toolbar = findViewById(R.id.topAppBar);
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -81,18 +91,43 @@ public class AddExpenseActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
         addExpenseViewModel = new ViewModelProvider(this).get(AddExpenseViewModel.class);
-//        displayExpenses();
 
-        addButton.setOnClickListener(new View.OnClickListener() {
+        expenseViewModel = new ViewModelProvider(this).get(ExpenseViewModel.class);
+
+        Bundle bundle = getIntent().getExtras();
+
+        if (bundle != null && bundle.containsKey("expenseId")) {
+            int id = bundle.getInt("expenseId");
+            expense = expenseViewModel.getAll().getValue().get(id);
+            name.setText(expense.getName());
+            amount.setText(expense.getAmount()+"");
+        }
+
+        editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Expense item = new Expense(name.getText().toString(),((Account) account.getSelectedItem()).getId(),Integer.parseInt(amount.getText().toString()),((Currency) currency.getSelectedItem()).getId(),((Category) category.getSelectedItem()).getId());
-                addExpenseViewModel.create(item);
-                Intent intent = new Intent(AddExpenseActivity.this, AllExpensesActivity.class);
+                expense.setName(name.getText().toString());
+                expense.setAccountId(((Account) account.getSelectedItem()).getId());
+                expense.setAmount(Integer.parseInt(amount.getText().toString()));
+                expense.setCurrencyId(((Currency) currency.getSelectedItem()).getId());
+                expense.setCategoryId(((Category) category.getSelectedItem()).getId());
+                System.out.println(expense);
+                expenseViewModel.update(expense);
+                Intent intent = new Intent(ViewExpenseActivity.this, AllExpensesActivity.class);
                 startActivity(intent);
                 finish();
+
+            }
+        });
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                expenseViewModel.delete(expense.id);
+                Intent intent = new Intent(ViewExpenseActivity.this, AllExpensesActivity.class);
+                startActivity(intent);
+                finish();
+
             }
         });
         addExpenseViewModel.getAllCategories().observe(this, new Observer<List<Category>>() {
@@ -100,6 +135,11 @@ public class AddExpenseActivity extends AppCompatActivity {
             public void onChanged(List<Category> categories) {
                 ArrayAdapter<Category> spinnerCategoryAdapter = new ArrayAdapter<Category>(contextOfApplication, android.R.layout.simple_spinner_dropdown_item, categories);
                 category.setAdapter(spinnerCategoryAdapter);
+                List<Category> result = categories.stream()
+                        .filter(item -> item.id==expense.getCategory().id)
+                        .collect(Collectors.toList());
+                currency.setSelection(categories.indexOf(result.get(0)));
+
             }
         });
         addExpenseViewModel.getAllCurrencies().observe(this, new Observer<List<Currency>>() {
@@ -107,6 +147,10 @@ public class AddExpenseActivity extends AppCompatActivity {
             public void onChanged(List<Currency> currencies) {
                 ArrayAdapter<Currency> spinnerCurrencyAdapter = new ArrayAdapter<Currency>(contextOfApplication, android.R.layout.simple_spinner_dropdown_item, currencies);
                 currency.setAdapter(spinnerCurrencyAdapter);
+                List<Currency> result = currencies.stream()
+                        .filter(item -> item.id==expense.getCurrency().id)
+                        .collect(Collectors.toList());
+                currency.setSelection(currencies.indexOf(result.get(0)));
             }
         });
         addExpenseViewModel.getAllAccounts().observe(this, new Observer<List<Account>>() {
@@ -114,6 +158,10 @@ public class AddExpenseActivity extends AppCompatActivity {
             public void onChanged(List<Account> accounts) {
                 ArrayAdapter<Account> spinnerAccountAdapter = new ArrayAdapter<Account>(contextOfApplication, android.R.layout.simple_spinner_dropdown_item, accounts);
                 account.setAdapter(spinnerAccountAdapter);
+                List<Account> result = accounts.stream()
+                        .filter(item -> item.id==expense.getAccountId())
+                        .collect(Collectors.toList());
+                currency.setSelection(accounts.indexOf(result.get(0)));
             }
         });
     }

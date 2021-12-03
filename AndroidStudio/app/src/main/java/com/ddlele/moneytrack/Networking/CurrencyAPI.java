@@ -21,8 +21,8 @@ public interface CurrencyAPI {
     Call<Currency> get(@Path("Id") long id);
     @PUT("currency")
     Call<Currency> update(@Body Currency item);
-    @DELETE
-    Call<Currency> delete(@Path("Id") long id);
+    @DELETE("currency/{id}")
+    Call<Currency> delete(@Path("id") long id);
 
 
 }

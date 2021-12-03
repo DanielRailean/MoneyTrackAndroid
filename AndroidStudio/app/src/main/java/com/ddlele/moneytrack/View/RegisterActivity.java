@@ -60,9 +60,9 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         textView = findViewById(R.id.mainText);
-        name = findViewById(R.id.e_nameField);
-        email = findViewById(R.id.e_amount);
-        password = findViewById(R.id.e_currency);
+        name = findViewById(R.id.e_edit_nameField);
+        email = findViewById(R.id.e_edit_amount);
+        password = findViewById(R.id.e_edit_currency);
         registerButton = findViewById(R.id.registerButton);
 
 

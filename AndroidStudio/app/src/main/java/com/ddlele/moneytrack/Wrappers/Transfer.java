@@ -39,6 +39,24 @@ public class Transfer {
         this.currencyId = currencyId;
     }
 
+    @Override
+    public String toString() {
+        return "Transfer{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", sourceAccount=" + sourceAccount +
+                ", sourceId=" + sourceId +
+                ", destinationAccount=" + destinationAccount +
+                ", destinationId=" + destinationId +
+                ", amount=" + amount +
+                ", currency=" + currency +
+                ", currencyId=" + currencyId +
+                ", authorId=" + authorId +
+                ", dateCreated=" + dateCreated +
+                ", userPriority=" + userPriority +
+                '}';
+    }
+
     public int getId() {
         return id;
     }

@@ -45,7 +45,7 @@
                 android:text="Login" />
 
             <EditText
-                android:id="@+id/e_amount"
+                android:id="@+id/e_edit_amount"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_margin="20dp"
@@ -57,7 +57,7 @@
                 android:inputType="textEmailAddress"/>
 
             <EditText
-                android:id="@+id/e_currency"
+                android:id="@+id/e_edit_currency"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_margin="20dp"

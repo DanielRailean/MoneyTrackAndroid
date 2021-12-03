@@ -21,8 +21,8 @@ public interface CategoryAPI {
     Call<Category> get(@Path("Id") long id);
     @PUT("category")
     Call<Category> update(@Body Category item);
-    @DELETE
-    Call<Category> delete(@Path("Id") long id);
+    @DELETE("category/{id}")
+    Call<Category> delete(@Path("id") long id);
 
 
 }

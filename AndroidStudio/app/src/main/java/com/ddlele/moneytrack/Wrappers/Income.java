@@ -34,6 +34,22 @@ public class Income {
         this.currencyId = currencyId;
     }
 
+    @Override
+    public String toString() {
+        return "Income{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", accountId=" + accountId +
+                ", account=" + account +
+                ", amount=" + amount +
+                ", currencyId=" + currencyId +
+                ", currency=" + currency +
+                ", authorId=" + authorId +
+                ", dateCreated=" + dateCreated +
+                ", userPriority=" + userPriority +
+                '}';
+    }
+
     public int getId() {
         return id;
     }

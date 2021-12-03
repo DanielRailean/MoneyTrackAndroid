@@ -21,8 +21,8 @@ public interface IncomeAPI {
     Call<Income> get(@Path("Id") long id);
     @PUT("income")
     Call<Income> update(@Body Income item);
-    @DELETE
-    Call<Income> delete(@Path("Id") long id);
+    @DELETE("income/{id}")
+    Call<Income> delete(@Path("id") long id);
 
 
 }
