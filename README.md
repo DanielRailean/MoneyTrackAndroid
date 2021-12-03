@@ -1,4 +1,9 @@
 # MoneyTrackAndroid
+![MoneyTrack Logo](https://money.ddlele.com/favicon.png);
+
+## Demo:
+[YouTube Video](https://youtu.be/XDoFFIEdPOM)
+
 
 ## About:
 This project is meant to be the native Android client of my currently live project live at [money.ddlele.com](https://money.ddlele.com). All the Source-code is and will be public and present in this **GitHub** repository. The app will be using the same API as the main client.
@@ -13,25 +18,22 @@ In order to address people’s need of having the right tool to help with person
 
 Finished : |
 ------------ |
-
-none
+- [x] As a guest, I would like to register on the platform.
+- [x] As a user, I would like to log into the platform.
+- [x] As a user, I would like to track new expenses.
+- [x] As a user, I would like to add new incomes.
+- [x] As a user, I would like to add new currencies.
+- [x] As a user, I would like to edit current expenses/incomes.
+- [x] As a user, I would like to view all expenses and income for a given month so that I can have a better understanding when budgeting.
+- [x] As a user, I would like to add new accounts  and see the  accounts summary, and edit existing accounts.
+- [x] As a user, I would like to have different spending categories.
+- [x] As a user, I would like to have a budget for different categories , and to keep track of the current budget status based on the expenses I have added
 
 To be implemented: |
 ------------ |
 
-- [ ] As a guest, I would like to register on the platform.
-- [ ] As a user, I would like to log into the platform.
-- [ ] As a user, I would like to track new expenses.
-- [ ] As a user, I would like to add new incomes.
-- [ ] As a user, I would like to add new currencies.
-- [ ] As a user, I would like to edit current expenses/incomes.
-- [ ] As a user, I would like to view all expenses and income for a given month so that I can have a better understanding when budgeting.
-- [ ] As a user, I would like to add new accounts  and see the  accounts summary, and edit existing accounts.
 - [ ] As a user, I would like to edit my profile information.
-- [ ] As a user, I would like to have different spending categories.
-- [ ] As a user, I would like to have a budget for different categories , and to keep track of the current budget status b- [ ] Ased on the expenses I have added.
 - [ ] As a user, I would like to share an account with another user.
-
 
 ***Another requirements such as daily notifications may be added at a later stage***
 
