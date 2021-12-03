@@ -1,4 +1,4 @@
-package com.ddlele.moneytrack.View;
+package com.ddlele.moneytrack.View.Expense;
 
 import android.content.Context;
 import android.content.Intent;
@@ -114,7 +114,7 @@ public class ViewExpenseActivity extends AppCompatActivity {
                 expense.setCategoryId(((Category) category.getSelectedItem()).getId());
                 System.out.println(expense);
                 expenseViewModel.update(expense);
-                Intent intent = new Intent(ViewExpenseActivity.this, AllExpensesActivity.class);
+                Intent intent = new Intent(ViewExpenseActivity.this, AllExpenseActivity.class);
                 startActivity(intent);
                 finish();
 
@@ -124,7 +124,7 @@ public class ViewExpenseActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 expenseViewModel.delete(expense.id);
-                Intent intent = new Intent(ViewExpenseActivity.this, AllExpensesActivity.class);
+                Intent intent = new Intent(ViewExpenseActivity.this, AllExpenseActivity.class);
                 startActivity(intent);
                 finish();
 

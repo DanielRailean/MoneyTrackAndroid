@@ -24,15 +24,15 @@
             android:exported="true"
             android:label="@string/title_activity_auth" />
         <activity
-            android:name=".View.AllExpensesActivity"
+            android:name=".View.Expense.AllExpenseActivity"
             android:exported="true"
             android:label="@string/title_expense_activity" />
         <activity
-            android:name=".View.AddExpenseActivity"
+            android:name=".View.Expense.AddExpenseActivity"
             android:exported="true"
             android:label="AddExpenseActivity" />
         <activity
-            android:name=".View.ViewExpenseActivity"
+            android:name=".View.Expense.ViewExpenseActivity"
             android:exported="true"
             android:label="ViewExpenseActivity" />
         <activity

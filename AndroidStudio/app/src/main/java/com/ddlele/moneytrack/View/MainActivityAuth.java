@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.ddlele.moneytrack.R;
+import com.ddlele.moneytrack.View.Expense.AllExpenseActivity;
 import com.ddlele.moneytrack.ViewModel.UserViewModel;
 import com.ddlele.moneytrack.Wrappers.ApiResponses.JWT;
 import com.google.android.material.navigation.NavigationView;
@@ -108,15 +109,15 @@ public class MainActivityAuth extends AppCompatActivity {
         Intent intent;
         switch(menuItem.getItemId()) {
             case R.id.nav_expenses:
-                intent= new Intent(MainActivityAuth.this, AllExpensesActivity.class);
+                intent= new Intent(MainActivityAuth.this, AllExpenseActivity.class);
 
                 break;
             case R.id.nav_incomes:
-                intent= new Intent(MainActivityAuth.this, AllExpensesActivity.class);
+                intent= new Intent(MainActivityAuth.this, AllExpenseActivity.class);
                 break;
 
             default:
-                intent= new Intent(MainActivityAuth.this, AllExpensesActivity.class);
+                intent= new Intent(MainActivityAuth.this, AllExpenseActivity.class);
         }
 
         startActivity(intent);

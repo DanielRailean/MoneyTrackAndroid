@@ -1,4 +1,4 @@
-package com.ddlele.moneytrack.View;
+package com.ddlele.moneytrack.View.Expense;
 
 import android.content.Context;
 import android.content.Intent;
@@ -90,7 +90,7 @@ public class AddExpenseActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Expense item = new Expense(name.getText().toString(),((Account) account.getSelectedItem()).getId(),Integer.parseInt(amount.getText().toString()),((Currency) currency.getSelectedItem()).getId(),((Category) category.getSelectedItem()).getId());
                 addExpenseViewModel.create(item);
-                Intent intent = new Intent(AddExpenseActivity.this, AllExpensesActivity.class);
+                Intent intent = new Intent(AddExpenseActivity.this, AllExpenseActivity.class);
                 startActivity(intent);
                 finish();
             }
